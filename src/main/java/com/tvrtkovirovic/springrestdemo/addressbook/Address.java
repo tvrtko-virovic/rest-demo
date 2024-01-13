@@ -16,11 +16,11 @@ public class Address extends BaseEntity {
     @Column
     private String street;
 
-    @Column
-    private int contactId;
+//    @Column
+//    private int contactId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "contactid")
-//    private Contact contact;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="contact_id", insertable=false, updatable=false)
+    private Contact contact;
 
 }

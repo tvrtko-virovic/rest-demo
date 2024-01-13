@@ -3,6 +3,7 @@ package com.tvrtkovirovic.springrestdemo.addressbook;
 import com.tvrtkovirovic.springrestdemo.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 @Entity
 @Table
@@ -16,10 +17,10 @@ public class Phone extends BaseEntity {
     @Column
     private String phoneNumber;
 
-    @Column
-    private int contactId;
+//    @Column
+//    private int contactId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "contactid")
-//    private Contact contact;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="contact_id", insertable=false, updatable=false)
+    private Contact contact;
 }

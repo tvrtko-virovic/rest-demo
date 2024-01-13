@@ -21,10 +21,12 @@ public class Contact extends BaseEntity {
     @Column
     private String surname;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contactId", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="contact_id")
     private List<Address> addresses;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "contactId", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="contact_id")
     private List<Phone> phones;
 
 }

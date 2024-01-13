@@ -5,9 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.cert.X509Certificate;
 import java.util.List;
@@ -30,4 +28,14 @@ public class ContactController {
                 .toList();
         return new ResponseEntity<>(contactDtos, HttpStatus.OK);
     }
+
+    @PostMapping(path = "/", produces= MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ContactDto> post(@RequestBody ContactDto contactDto)
+    {
+        Contact contact = modelMapper.map(contactDto, Contact.class);
+        this.contactRepository.save(contact);
+        contactDto = modelMapper.map(contact, ContactDto.class);
+        return new ResponseEntity<>(contactDto, HttpStatus.OK);
+    }
+
 }

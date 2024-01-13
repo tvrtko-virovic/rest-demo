@@ -1,9 +1,7 @@
 package com.tvrtkovirovic.springrestdemo.addressbook;
 
 import com.tvrtkovirovic.springrestdemo.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -14,7 +12,15 @@ import lombok.*;
 @NoArgsConstructor()
 @AllArgsConstructor
 public class Address extends BaseEntity {
+
     @Column
     private String street;
+
+    @Column
+    private int contactId;
+
+//    @ManyToOne
+//    @JoinColumn(name = "contactid")
+//    private Contact contact;
 
 }

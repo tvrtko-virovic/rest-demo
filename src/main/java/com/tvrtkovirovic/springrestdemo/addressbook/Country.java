@@ -11,16 +11,12 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor()
 @AllArgsConstructor
-public class Address extends BaseEntity {
+public class Country extends BaseEntity {
 
-    @Column
-    private String street;
+    @Column(length =50, nullable = false)
+    private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="contact_id", insertable=false, updatable=false)
-    private Contact contact;
-
-    @ManyToOne
-    private Country country;
+    @Column(length = 2, nullable = false)
+    private String code;
 
 }

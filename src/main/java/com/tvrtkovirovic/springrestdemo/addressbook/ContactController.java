@@ -1,7 +1,9 @@
 package com.tvrtkovirovic.springrestdemo.addressbook;
 
+import com.tvrtkovirovic.springrestdemo.Identifiable;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +38,16 @@ public class ContactController {
         contactDto = modelMapper.map(contact, ContactDto.class);
         return new ResponseEntity<>(contactDto, HttpStatus.OK);
     }
+
+    @PutMapping(path = "/", produces= MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ContactDto> put(@RequestParam int id, @RequestBody ContactDto contactDto)
+    {
+        Contact contact = this.contactRepository.findById(id).orElseThrow();
+        modelMapper.map(contactDto, contact);
+        this.contactRepository.save(contact);
+        modelMapper.map(contact, contactDto);
+        return new ResponseEntity<>(contactDto, HttpStatus.OK);
+    }
+
 
 }

@@ -1,3 +1,7 @@
+insert into country (name, code) values ('Croatia', 'HR');
+insert into country (name, code) values ('Bosnia', 'BA');
+insert into country (name, code) values ('Germany', 'DE');
+
 insert into contact (name, surname) values ('John', 'Doe');
 insert into contact (name, surname) values ('John', 'Wick');
 insert into contact (name, surname) values ('Gerald', 'of Rivia');
